@@ -35,7 +35,7 @@ export default function HomePage() {
       </div>
 
       {/* Navigation */}
-      <nav className="relative z-10 flex items-center justify-between p-6 max-w-7xl mx-auto">
+      {/* <nav className="relative z-10 flex items-center justify-between p-6 max-w-7xl mx-auto">
         <div className="flex items-center space-x-2">
           <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center glow-accent">
             <Code2 className="w-5 h-5 text-accent-foreground" />
@@ -64,7 +64,7 @@ export default function HomePage() {
             Get Started
           </Button>
         </div>
-      </nav>
+      </nav> */}
 
       {/* Hero Section */}
       <main className="relative z-10 max-w-7xl mx-auto px-6">
