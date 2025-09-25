@@ -1,6 +1,4 @@
-import { stat } from "fs";
 import { create, StateCreator } from "zustand";
-import { createSelectors } from "../z-stores/auto-generatin-slectors";
 
 interface BearSlice {
   bears: number;
@@ -64,5 +62,3 @@ const useBoundStore = create<BearSlice & FishSlice & SharedSlice>()((...a) => {
     ...sharedSlice(...a),
   };
 });
-
-const selectBoundStore = createSelectors(useBoundStore);

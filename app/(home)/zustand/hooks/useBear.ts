@@ -25,7 +25,6 @@ export const useBearStore = create<BearState & BearActions>()(
 );
 
 // below like the splice pattern of redux
-
 interface State {
   count: number;
 }

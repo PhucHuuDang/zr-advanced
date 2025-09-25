@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { metaConfig } from "./meta";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Toaster richColors position="top-right" />
         <nav className="fixed top-0 left-0 right-0 flex items-center justify-between p-6 z-50 backdrop-blur-md shadow-md">
           <div className="max-w-7xl container mx-auto flex items-center justify-between w-full">
             <div className="flex items-center space-x-2">
