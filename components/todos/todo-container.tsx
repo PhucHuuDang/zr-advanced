@@ -4,9 +4,9 @@ import type React from "react";
 
 import { useState, useEffect } from "react";
 import type { TodoTypes } from "@/types/todo";
-import { TodoItem } from "@/components/todo-item";
-import { AddTodoForm } from "@/components/add-todo-form";
-import { TodoStats } from "@/components/todo-stats";
+import { TodoItem } from "@/components/todos/todo-item";
+import { AddTodoForm } from "@/components/todos/add-todo-form";
+import { TodoStats } from "@/components/todos/todo-stats";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {

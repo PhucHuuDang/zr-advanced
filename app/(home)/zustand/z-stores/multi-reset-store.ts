@@ -4,27 +4,25 @@ import { create } from "zustand";
 
 type StoreName = string;
 
-const storeResetFns = new Map<StoreName, () => void>();
+const storeResetFns = new Map<string, () => void>();
 
 const resetStore = () => {
   return storeResetFns.forEach((resetFn) => resetFn());
 };
 
-export const reliablyResetStore = (<T>() => {
+export const reliablyResetStore = (<T>(storeName: string) => {
   return (stateCreator: StateCreator<T>) => {
     const store = create(stateCreator);
 
-    storeResetFns.set(store.name, () => {
+    storeResetFns.set(storeName, () => {
       store.setState(store.getInitialState(), true);
     });
 
     return store as UseBoundStore<StoreApi<T>>;
   };
 }) as typeof create;
-
-export const chooseStoreToReset = <T extends string>(
-  storeName: T & (T extends keyof typeof storeResetFns ? T : never)
-) => {
+``;
+export const chooseStoreToReset = <T>(storeName: T) => {
   const fnChoose = storeResetFns.get(storeName as string);
 
   if (fnChoose) {

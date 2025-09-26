@@ -14,7 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { PriorityBadge } from "@/components/priority-badge";
+import { PriorityBadge } from "@/components/todos/priority-badge";
 import type { TodoTypes } from "@/types/todo";
 import {
   Pencil,
@@ -28,9 +28,9 @@ import {
   TimerIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { CalendarDateTime } from "./_calendar-custom/calendar-date-time";
-import { Label } from "./ui/label";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { CalendarDateTime } from "../_calendar-custom/calendar-date-time";
+import { Label } from "../ui/label";
 import { format, formatDate } from "date-fns";
 import { DD_MM_YYYY, DD_MM_YYYY_HH_MM_SS, MM_HH_DD_MM_YYYY } from "@/lib/date";
 
