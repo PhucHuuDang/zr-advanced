@@ -33,19 +33,33 @@ import { selectorTodo } from "@/app/(home)/zustand/z-stores/todos";
 type FilterType = "all" | "pending" | "completed" | "high-priority" | "overdue";
 type SortType = "created" | "priority" | "dueDate" | "name";
 
-export default function TodoContainer() {
+interface TodoContainerProps {
+  todosStore: TodoTypes[];
+  addTodoStore: (todo: TodoTypes) => void;
+  updateTodoStore: (todo: Partial<TodoTypes>, id: string) => void;
+  removeTodoStore: (id: string) => void;
+  clearTodosStore: () => void;
+  clearCompletedStore: () => void;
+}
+export default function TodoContainer({
+  addTodoStore,
+  clearCompletedStore,
+  clearTodosStore,
+  removeTodoStore,
+  todosStore,
+  updateTodoStore,
+}: TodoContainerProps) {
   const [filter, setFilter] = useState<FilterType>("all");
   const [isDark, setIsDark] = useState(true);
   const [sortBy, setSortBy] = useState<SortType>("created");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const todosStore = selectorTodo.use.todos();
-
-  const addTodoStore = selectorTodo.use.addTodo();
-  const updateTodoStore = selectorTodo.use.updateTodo();
-  const removeTodoStore = selectorTodo.use.removeTodo();
-  const clearTodosStore = selectorTodo.use.clearTodos();
-  const clearCompletedStore = selectorTodo.use.clearCompleted();
+  // const todosStore = selectorTodo.use.todos();
+  // const addTodoStore = selectorTodo.use.addTodo();
+  // const updateTodoStore = selectorTodo.use.updateTodo();
+  // const removeTodoStore = selectorTodo.use.removeTodo();
+  // const clearTodosStore = selectorTodo.use.clearTodos();
+  // const clearCompletedStore = selectorTodo.use.clearCompleted();
 
   useEffect(() => {
     if (isDark) {
@@ -80,8 +94,6 @@ export default function TodoContainer() {
     toast.success("Todo added successfully");
     // setTodos((prev) => [newTodo, ...prev]);
   };
-
-  console.log({ todosStore });
 
   const updateTodo = (id: string, updates: Partial<TodoTypes>) => {
     // setTodos((prev) =>

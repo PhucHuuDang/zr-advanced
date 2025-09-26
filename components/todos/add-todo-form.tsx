@@ -15,8 +15,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { CalendarIcon, Plus, Sparkles } from "lucide-react";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { CalendarDateTime } from "./_calendar-custom/calendar-date-time";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { CalendarDateTime } from "@/components/_calendar-custom/calendar-date-time";
 
 interface AddTodoFormProps {
   onAdd: (

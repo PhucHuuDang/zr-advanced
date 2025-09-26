@@ -1,5 +1,5 @@
-import TodoContainer from "@/components/todos/todo-container";
 import { Metadata } from "next";
+import { ZustandClient } from "./_z_components/zustand-client";
 
 export const metadata: Metadata = {
   title: "Zustand",
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const ZustandPage = () => {
   return (
     <>
-      <TodoContainer />
+      <ZustandClient />
     </>
   );
 };
