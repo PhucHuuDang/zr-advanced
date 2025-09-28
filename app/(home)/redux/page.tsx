@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import React from "react";
+import ReduxClient from "./_components/redux-client";
 
 export const metadata: Metadata = {
   title: "Redux",
@@ -7,7 +8,11 @@ export const metadata: Metadata = {
 };
 
 const ReduxPage = () => {
-  return <div>ReduxPage</div>;
+  return (
+    <div className="pt-10">
+      <ReduxClient />
+    </div>
+  );
 };
 
 export default ReduxPage;
