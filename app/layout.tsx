@@ -7,6 +7,8 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { metaConfig } from "./meta";
 import { Toaster } from "sonner";
+import { store } from "@/app/(home)/redux/r-stores/store";
+import { Provider } from "react-redux";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,42 +35,44 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Toaster richColors position="top-right" />
-        <nav className="fixed top-0 left-0 right-0 flex items-center justify-between p-6 z-50 backdrop-blur-md shadow-md">
-          <div className="max-w-7xl container mx-auto flex items-center justify-between w-full">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center glow-accent">
-                <Code2 className="w-5 h-5 text-accent-foreground" />
+        <Provider store={store}>
+          <Toaster richColors position="top-right" />
+          <nav className="fixed top-0 left-0 right-0 flex items-center justify-between p-6 z-50 backdrop-blur-md shadow-md">
+            <div className="max-w-7xl container mx-auto flex items-center justify-between w-full">
+              <div className="flex items-center space-x-2">
+                <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center glow-accent">
+                  <Code2 className="w-5 h-5 text-accent-foreground" />
+                </div>
+                <span className="text-xl font-bold gradient-text">
+                  StateManager
+                </span>
               </div>
-              <span className="text-xl font-bold gradient-text">
-                StateManager
-              </span>
+              <div className="flex items-center space-x-6">
+                <Link
+                  href="/docs"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Docs
+                </Link>
+                <Link
+                  href="/examples"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Examples
+                </Link>
+                <ThemeToggle />
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="hover:bg-accent/10 bg-transparent"
+                >
+                  Get Started
+                </Button>
+              </div>
             </div>
-            <div className="flex items-center space-x-6">
-              <Link
-                href="/docs"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Docs
-              </Link>
-              <Link
-                href="/examples"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Examples
-              </Link>
-              <ThemeToggle />
-              <Button
-                variant="outline"
-                size="sm"
-                className="hover:bg-accent/10 bg-transparent"
-              >
-                Get Started
-              </Button>
-            </div>
-          </div>
-        </nav>
-        <div className="pt-16">{children}</div>
+          </nav>
+          <div className="pt-16">{children}</div>
+        </Provider>
       </body>
     </html>
   );

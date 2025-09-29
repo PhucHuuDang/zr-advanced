@@ -10,6 +10,10 @@ export const metadata: Metadata = {
 const ReduxPage = () => {
   return (
     <div className="pt-10">
+      <h1 className="text-2xl font-bold text-center mb-10">
+        Core Redux → 2. Redux Toolkit → 3. Async logic → 4. Performance → 5.
+        Scale codebase → 6. Saga/RTK Query → 7. Testing.
+      </h1>
       <ReduxClient />
     </div>
   );

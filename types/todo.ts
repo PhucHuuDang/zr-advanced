@@ -6,7 +6,6 @@ export interface TodoTypes {
   description: string;
   completed: boolean;
   createdAt: Date;
-
   updatedAt?: Date;
   priority: Priority;
   dueDate?: Date;
