@@ -1,21 +1,16 @@
 import { PayloadAction, WritableDraft } from "@reduxjs/toolkit";
-import { InitialStateProps } from "../r-slices/todo-slice";
+import { InitialStateProps } from "../features/todo-slice";
 import { TodoTypes } from "@/types/todo";
 export const addTodoAction = (
   state: WritableDraft<InitialStateProps>,
-  action: PayloadAction<Omit<TodoTypes, "createdAt">>
+  action: PayloadAction<TodoTypes>
 ) => {
-  state.todos.push({
-    ...action.payload,
-    createdAt: new Date(),
-    id: crypto.randomUUID(),
-    completed: false,
-  });
+  state.todos.push(action.payload);
 };
 
 export const updateTodo = (
   state: WritableDraft<InitialStateProps>,
-  action: PayloadAction<Partial<TodoTypes>>
+  action: PayloadAction<Partial<TodoTypes>, string>
 ) => {
   state.todos = state.todos.map((todo) =>
     todo.id === action.payload.id

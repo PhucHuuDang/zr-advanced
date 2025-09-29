@@ -9,6 +9,7 @@ import { metaConfig } from "./meta";
 import { Toaster } from "sonner";
 import { store } from "@/app/(home)/redux/r-stores/store";
 import { Provider } from "react-redux";
+import StoreProvider from "./(home)/redux/providers/store-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +36,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Provider store={store}>
+        <StoreProvider>
           <Toaster richColors position="top-right" />
           <nav className="fixed top-0 left-0 right-0 flex items-center justify-between p-6 z-50 backdrop-blur-md shadow-md">
             <div className="max-w-7xl container mx-auto flex items-center justify-between w-full">
@@ -72,7 +73,7 @@ export default function RootLayout({
             </div>
           </nav>
           <div className="pt-16">{children}</div>
-        </Provider>
+        </StoreProvider>
       </body>
     </html>
   );

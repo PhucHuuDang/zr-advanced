@@ -29,6 +29,10 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { selectorTodo } from "@/app/(home)/zustand/z-stores/todos";
+import {
+  EmptyStateMessages,
+  EmptyStateSearch,
+} from "../empty-state/empty-state-options";
 
 type FilterType = "all" | "pending" | "completed" | "high-priority" | "overdue";
 type SortType = "created" | "priority" | "dueDate" | "name";
@@ -395,17 +399,19 @@ export default function TodoContainer({
                   : "📝"}
               </div>
               <h3 className="text-lg font-medium text-foreground mb-2">
-                {searchQuery
-                  ? "No matching todos found"
-                  : filter === "all"
-                  ? "No todos yet"
-                  : filter === "pending"
-                  ? "No pending todos"
-                  : filter === "completed"
-                  ? "No completed todos"
-                  : filter === "high-priority"
-                  ? "No high priority todos"
-                  : "No overdue todos"}
+                {searchQuery ? (
+                  <EmptyStateSearch />
+                ) : filter === "all" ? (
+                  <EmptyStateMessages />
+                ) : filter === "pending" ? (
+                  "No pending todos"
+                ) : filter === "completed" ? (
+                  "No completed todos"
+                ) : filter === "high-priority" ? (
+                  "No high priority todos"
+                ) : (
+                  "No overdue todos"
+                )}
               </h3>
               <p className="text-muted-foreground">
                 {searchQuery
