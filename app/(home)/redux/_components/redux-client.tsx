@@ -12,7 +12,6 @@ import {
   toggleTodo,
   updateTodo,
 } from "../features/todo-slice";
-import { SLICE_NAMES } from "../key/slice-names";
 
 const ReduxClient = () => {
   const dispatch = useAppDispatch();
@@ -23,10 +22,30 @@ const ReduxClient = () => {
 
   const actions = {
     todosStore: todos,
-    addTodoStore: (todo: TodoTypes) => dispatch(addTodo(todo)),
-    updateTodoStore: (todo: Partial<TodoTypes>) => dispatch(updateTodo(todo)),
+    addTodoStore: (todo: TodoTypes) =>
+      dispatch(addTodo({ ...todo, createdAt: new Date().toISOString() })),
+    updateTodoStore: (todo: Partial<TodoTypes>, id: string) => {
+      console.log({ todo });
+
+      const timeStamp = {
+        completedAt: todo.completedAt ? new Date().toISOString() : undefined,
+        timeCompleted: todo.timeCompleted
+          ? new Date().toISOString()
+          : undefined,
+        dueDate: todo.dueDate ? new Date().toISOString() : undefined,
+        updatedAt: todo.updatedAt ? new Date().toISOString() : undefined,
+      };
+
+      dispatch(
+        updateTodo({
+          ...todo,
+          id,
+          ...timeStamp,
+        })
+      );
+    },
     removeTodoStore: (id: string) => dispatch(removeTodos({ id })),
-    toggleTodoStore: (id: string) => dispatch(toggleTodo({ id })),
+
     clearTodosStore: () => dispatch(clearTodos()),
     clearCompletedStore: () => dispatch(clearCompleted()),
   };

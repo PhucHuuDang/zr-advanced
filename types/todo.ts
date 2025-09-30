@@ -5,14 +5,14 @@ export interface TodoTypes {
   name: string;
   description: string;
   completed: boolean;
-  createdAt: Date;
-  updatedAt?: Date;
+  createdAt: Date | string;
+  updatedAt?: Date | string;
   priority: Priority;
-  dueDate?: Date;
+  dueDate?: Date | string;
   time?: string;
 
-  timeCompleted?: Date;
+  timeCompleted?: Date | string;
 
   tags: string[];
-  completedAt?: Date;
+  completedAt?: Date | string;
 }

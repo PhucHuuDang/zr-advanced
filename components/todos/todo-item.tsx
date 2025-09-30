@@ -74,6 +74,8 @@ export function TodoItem({ todo, onUpdate, onDelete }: TodoItemProps) {
       updates.dueDate = undefined;
     }
 
+    console.log("updates", updates);
+
     onUpdate(todo.id, updates);
     setIsEditing(false);
   };
@@ -114,7 +116,8 @@ export function TodoItem({ todo, onUpdate, onDelete }: TodoItemProps) {
     todo.dueDate &&
     !todo.completed &&
     new Date() <= todo.dueDate &&
-    todo.dueDate.getTime() - new Date().getTime() < 24 * 60 * 60 * 1000;
+    new Date(todo.dueDate).getTime() - new Date().getTime() <
+      24 * 60 * 60 * 1000;
 
   return (
     <Card

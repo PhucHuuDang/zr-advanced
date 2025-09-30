@@ -6,6 +6,12 @@ export const store = () =>
     reducer: {
       [SLICE_NAMES.TODOS]: todosReducer,
     },
+
+    middleware: (getDefaultMiddleware) => {
+      return getDefaultMiddleware({
+        // serializableCheck: false,
+      });
+    },
   });
 
 export type AppStore = ReturnType<typeof store>;

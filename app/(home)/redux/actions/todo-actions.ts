@@ -5,21 +5,21 @@ export const addTodoAction = (
   state: WritableDraft<InitialStateProps>,
   action: PayloadAction<TodoTypes>
 ) => {
-  state.todos.push(action.payload);
+  state.todos.push({
+    ...action.payload,
+    createdAt: new Date().toISOString(),
+  });
 };
 
 export const updateTodo = (
   state: WritableDraft<InitialStateProps>,
-  action: PayloadAction<Partial<TodoTypes>, string>
+  action: PayloadAction<Partial<TodoTypes> & { id: string }>
 ) => {
   state.todos = state.todos.map((todo) =>
     todo.id === action.payload.id
       ? {
           ...todo,
-          ...{
-            ...action.payload,
-            updatedAt: new Date(),
-          },
+          ...action.payload,
         }
       : todo
   );
@@ -45,7 +45,7 @@ export const toggleTodo = (
       return {
         ...todo,
         completed: !todo.completed,
-        timeCompleted: !todo.completed ? new Date() : undefined,
+        timeCompleted: !todo.completed ? new Date().toISOString() : undefined,
       };
     }
     return todo;
