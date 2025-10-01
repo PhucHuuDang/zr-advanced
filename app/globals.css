@@ -122,6 +122,14 @@
   }
 }
 
+/* Smooth theme transition helper */
+.theme-transition * {
+  transition-property: background-color, color, border-color, fill, stroke,
+    box-shadow;
+  transition-duration: 400ms;
+  transition-timing-function: ease-in-out;
+}
+
 /* Custom grid pattern background */
 .grid-pattern {
   background-image: linear-gradient(
