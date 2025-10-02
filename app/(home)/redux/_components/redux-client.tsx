@@ -13,17 +13,23 @@ import {
   updateTodo,
 } from "../features/todo-slice";
 import { SLICE_NAMES } from "../key/slice-names";
+import { fetchUsers } from "../features/thunk-slice";
+
+const url = "https://jsonplaceholder.typicode.com/users";
 
 const ReduxClient = () => {
   const dispatch = useAppDispatch();
 
   const todos = useAppSelector((state) => state.todos.todos);
 
-  // const { users, status, error } = useAppSelector(
-  //   (state) => state[SLICE_NAMES.THUNK]
-  // );
+  const { users, status, error } = useAppSelector((state) => state.thunk);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    dispatch(fetchUsers(url));
+  }, []);
+
+  console.log({ users });
+  console.log({ status });
 
   const actions = {
     todosStore: todos,

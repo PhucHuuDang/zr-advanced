@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, ReducersMapObject } from "@reduxjs/toolkit";
 import { SLICE_NAMES } from "../key/slice-names";
 import todosReducer, {
   InitialStateProps,
@@ -7,6 +7,7 @@ import { serializableMiddleware } from "../middlewares/serializable";
 import { localStorageMiddleware } from "../middlewares/persist";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import thunkReducer from "../features/thunk-slice";
 
 const todosPersistConfig = {
   key: "r-todos",
@@ -15,27 +16,26 @@ const todosPersistConfig = {
   version: 1,
 };
 
-const rootReducer = persistReducer<InitialStateProps>(
-  todosPersistConfig,
-  todosReducer
-);
+const rootReducer: ReducersMapObject = {
+  [SLICE_NAMES.TODOS]: todosReducer,
+  [SLICE_NAMES.THUNK]: thunkReducer,
+};
 
 export const store = () =>
   configureStore({
-    reducer: {
-      [SLICE_NAMES.TODOS]: todosReducer,
-      // [SLICE_NAMES.THUNK]: thunkReducer,
-    },
+    reducer: rootReducer,
 
     devTools: process.env.NODE_ENV !== "production",
 
     middleware: (getDefaultMiddleware) => {
       return getDefaultMiddleware({
         serializableCheck: false,
-      }).concat(serializableMiddleware);
+      }).concat();
     },
   });
 
 export type AppStore = ReturnType<typeof store>;
-export type RootState = ReturnType<AppStore["getState"]>;
+// export type RootState = ReturnType<AppStore["getState"]>;
+export type RootState = ReturnType<ReturnType<typeof store>["getState"]>;
+
 export type AppDispatch = AppStore["dispatch"];

@@ -31,7 +31,6 @@ interface User {
   };
 }
 
-const url = "https://jsonplaceholder.typicode.com/users";
 export interface ThunkState {
   users: User[];
   status: "idle" | "pending" | "succeeded" | "failed";
