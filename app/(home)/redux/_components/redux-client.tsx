@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/hook";
 import TodoContainer from "@/components/todos/todo-container";
 import { TodoTypes } from "@/types/todo";
@@ -12,13 +12,18 @@ import {
   toggleTodo,
   updateTodo,
 } from "../features/todo-slice";
+import { SLICE_NAMES } from "../key/slice-names";
 
 const ReduxClient = () => {
   const dispatch = useAppDispatch();
 
   const todos = useAppSelector((state) => state.todos.todos);
 
-  console.log({ todos });
+  // const { users, status, error } = useAppSelector(
+  //   (state) => state[SLICE_NAMES.THUNK]
+  // );
+
+  useEffect(() => {}, []);
 
   const actions = {
     todosStore: todos,

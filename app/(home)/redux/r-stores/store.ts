@@ -23,21 +23,16 @@ const rootReducer = persistReducer<InitialStateProps>(
 export const store = () =>
   configureStore({
     reducer: {
-      [SLICE_NAMES.TODOS]: rootReducer,
+      [SLICE_NAMES.TODOS]: todosReducer,
+      // [SLICE_NAMES.THUNK]: thunkReducer,
     },
 
     devTools: process.env.NODE_ENV !== "production",
 
-    // preloadedState:
-    //   typeof window !== "undefined" ? reHydratesStore() : undefined,
-
     middleware: (getDefaultMiddleware) => {
       return getDefaultMiddleware({
         serializableCheck: false,
-        // serializableCheck: {
-        //   ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
-        // },
-      }).concat(serializableMiddleware, localStorageMiddleware);
+      }).concat(serializableMiddleware);
     },
   });
 

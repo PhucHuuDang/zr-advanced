@@ -38,8 +38,8 @@ export default function RootLayout({
       >
         <StoreProvider>
           <Toaster richColors position="top-right" />
-          <nav className="fixed top-0 left-0 right-0 flex items-center justify-between p-6 z-50 backdrop-blur-md shadow-md">
-            <div className="max-w-7xl container mx-auto flex items-center justify-between w-full">
+          <nav className="fixed top-0 left-0 right-0 flex items-center   justify-between p-6 z-50 backdrop-blur-md shadow-md">
+            <div className="max-w-7xl container mx-auto flex items-center justify-center w-full">
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center glow-accent">
                   <Code2 className="w-5 h-5 text-accent-foreground" />
