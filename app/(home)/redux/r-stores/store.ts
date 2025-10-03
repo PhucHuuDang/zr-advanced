@@ -12,7 +12,6 @@ import thunkReducer from "../features/thunk-slice";
 const todosPersistConfig = {
   key: "r-todos",
   storage,
-  // whitelist: ["todos"],
   version: 1,
 };
 
@@ -35,7 +34,7 @@ export const store = () =>
   });
 
 export type AppStore = ReturnType<typeof store>;
-// export type RootState = ReturnType<AppStore["getState"]>;
-export type RootState = ReturnType<ReturnType<typeof store>["getState"]>;
+export type RootState = ReturnType<AppStore["getState"]>;
+// export type RootState = ReturnType<ReturnType<typeof store>["getState"]>;
 
 export type AppDispatch = AppStore["dispatch"];

@@ -12,7 +12,6 @@ import {
   toggleTodo,
   updateTodo,
 } from "../features/todo-slice";
-import { SLICE_NAMES } from "../key/slice-names";
 import { fetchUsers } from "../features/thunk-slice";
 
 const url = "https://jsonplaceholder.typicode.com/users";
@@ -30,6 +29,7 @@ const ReduxClient = () => {
 
   console.log({ users });
   console.log({ status });
+  console.log({ error });
 
   const actions = {
     todosStore: todos,
