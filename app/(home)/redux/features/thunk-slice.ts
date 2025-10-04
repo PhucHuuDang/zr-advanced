@@ -6,8 +6,9 @@ import {
 } from "@reduxjs/toolkit";
 import { SLICE_NAMES } from "../key/slice-names";
 import { useAppDispatch } from "../hooks/hook";
+import { schema, normalize } from "normalizr";
 
-interface User {
+export interface User {
   id: number;
   name: string;
   username: string;
@@ -43,6 +44,8 @@ const initialState: ThunkState = {
   error: null,
 };
 
+const userEntity = new schema.Entity("users");
+
 export const fetchUsers = createAsyncThunk<User[], string>(
   `${SLICE_NAMES.THUNK}/fetchUsers`,
   async (
@@ -61,7 +64,10 @@ export const fetchUsers = createAsyncThunk<User[], string>(
     try {
       const res = await fetch(apiUrl);
       if (!res.ok) throw new Error("Failed to fetch users");
-      return (await res.json()) as User[];
+      // return (await res.json()) as User[];
+      const normalizedData = normalize(await res.json(), [userEntity]);
+
+      return normalizedData.entities.users as User[];
     } catch (err: any) {
       return rejectWithValue(err.message || "Unknown error");
     }
