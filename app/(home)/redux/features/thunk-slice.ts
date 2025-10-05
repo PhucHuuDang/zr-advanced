@@ -1,11 +1,5 @@
-import {
-  createAsyncThunk,
-  createSlice,
-  PayloadAction,
-  WritableDraft,
-} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { SLICE_NAMES } from "../key/slice-names";
-import { useAppDispatch } from "../hooks/hook";
 import { schema, normalize } from "normalizr";
 
 export interface User {

@@ -10,13 +10,7 @@ import {
   clearCompleted as clearCompletedAction,
 } from "../actions/todo-actions";
 
-export interface InitialStateProps {
-  todos: TodoTypes[];
-}
-
-const initialState: InitialStateProps = {
-  todos: [],
-};
+const initialState: TodoTypes[] = [];
 
 const todosSlice = createSlice({
   name: SLICE_NAMES.TODOS,

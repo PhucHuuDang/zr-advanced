@@ -1,3 +1,4 @@
+// the r-persist middleware by hand
 export const localStorageMiddleware = ({ getState }: any) => {
   return (next: any) => (action: any) => {
     const result = next(action);

@@ -9,7 +9,6 @@ import {
   clearCompleted,
   clearTodos,
   removeTodos,
-  toggleTodo,
   updateTodo,
 } from "../features/todo-slice";
 import { fetchUsers } from "../features/thunk-slice";
@@ -19,39 +18,37 @@ const url = "https://jsonplaceholder.typicode.com/users";
 const ReduxClient = () => {
   const dispatch = useAppDispatch();
 
-  const todos = useAppSelector((state) => state.todos.todos);
+  const todos = useAppSelector((state) => state.todos ?? []);
 
-  const { users, status, error } = useAppSelector((state) => state.thunk);
+  console.log("todosStore =", todos);
+
+  const { users } = useAppSelector((state) => state.thunk);
 
   useEffect(() => {
     dispatch(fetchUsers(url));
-  }, []);
+  }, [dispatch]);
 
-  console.log({ users });
-  console.log({ status });
-  console.log({ error });
+  // console.log({ users });
+  // console.log({ status });
+  // console.log({ error });
 
   const actions = {
-    todosStore: todos,
+    todosStore: todos ?? [],
     addTodoStore: (todo: TodoTypes) =>
       dispatch(addTodo({ ...todo, createdAt: new Date().toISOString() })),
     updateTodoStore: (todo: Partial<TodoTypes>, id: string) => {
       console.log({ todo });
-
-      const timeStamp = {
-        completedAt: todo.completedAt ? new Date().toISOString() : undefined,
-        timeCompleted: todo.timeCompleted
-          ? new Date().toISOString()
-          : undefined,
-        dueDate: todo.dueDate ? new Date().toISOString() : undefined,
-        updatedAt: todo.updatedAt ? new Date().toISOString() : undefined,
+      const serialized = {
+        ...todo,
+        completedAt: todo.completed ? new Date().toISOString() : undefined,
+        timeCompleted: todo.completed ? new Date().toISOString() : undefined,
+        updatedAt: new Date().toISOString(),
       };
 
       dispatch(
         updateTodo({
-          ...todo,
+          ...serialized,
           id,
-          ...timeStamp,
         })
       );
     },
