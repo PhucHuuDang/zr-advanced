@@ -26,19 +26,9 @@ const ReduxClient = () => {
     (state: RootState) => state[SLICE_NAMES.TODOS] ?? []
   );
 
-  // console.log("todosStore =", todos);
-
-  const { users } = useAppSelector(
-    (state: RootState) => state[SLICE_NAMES.THUNK]
-  );
-
   useEffect(() => {
     dispatch(fetchUsers(url));
   }, [dispatch]);
-
-  // console.log({ users });
-  // console.log({ status });
-  // console.log({ error });
 
   const actions = {
     todosStore: todos ?? [],
@@ -66,15 +56,7 @@ const ReduxClient = () => {
     clearCompletedStore: () => dispatch(clearCompleted()),
   };
 
-  return (
-    <>
-      <TodoContainer {...actions} />
-
-      <Link href="/redux/users" className="p-4 bg-slate-200 rounded-lg">
-        Manage Users
-      </Link>
-    </>
-  );
+  return <TodoContainer {...actions} />;
 };
 
 export default ReduxClient;

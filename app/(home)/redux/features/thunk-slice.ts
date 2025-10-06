@@ -185,11 +185,23 @@ const thunkSlice = createSlice({
       state.error = null;
     });
 
+    builder.addCase(addUser.pending, (state) => {
+      state.status = "pending";
+      state.error = null;
+    });
+
     builder.addCase(updateUser.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error.message || "Unknown error";
 
       toast.error("User updated failed");
+    });
+
+    builder.addCase(addUser.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message || "Unknown error";
+
+      toast.error("User added failed");
     });
 
     builder.addCase(updateUser.fulfilled, (state, action) => {

@@ -26,6 +26,7 @@ import { SLICE_NAMES } from "../../key/slice-names";
 import { nanoid } from "@reduxjs/toolkit";
 import { toast } from "sonner";
 import Link from "next/link";
+import { Waiting } from "@/components/simulate/wating";
 
 const url = "https://jsonplaceholder.typicode.com/users";
 
@@ -365,6 +366,8 @@ export function UserTable() {
         onOpenChange={setIsDeleteDialogOpen}
         onUserDeleted={handleUserDeleted}
       />
+
+      {status === "pending" && <Waiting />}
     </div>
   );
 }
