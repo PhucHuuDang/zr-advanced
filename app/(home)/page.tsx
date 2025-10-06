@@ -15,6 +15,10 @@ import {
   Clock,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import {
+  ButtonGroup,
+  ButtonGroupSeparator,
+} from "@/components/ui/button-group";
 
 export default function HomePage() {
   return (
@@ -128,21 +132,45 @@ export default function HomePage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <Link href="/zustand">
-              <Button size="lg" className="glow-accent group">
+              <Button size="lg" className="glow-primary group cursor-pointer">
                 Explore Zustand
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
-            <Link href="/redux">
+            {/* <Link href="/redux">
               <Button
                 size="lg"
                 variant="outline"
-                className="group bg-transparent hover:bg-accent/10"
+                className="group bg-transparent hover:bg-primary/10 cursor-pointer"
               >
                 Learn Redux
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
-            </Link>
+            </Link> */}
+
+            <ButtonGroup aria-label="Button group">
+              <Link href="/redux" className="cursor-pointer">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="hover:bg-slate-400 bg-slate-200 transition-all duration-300 text-slate-400-foreground cursor-pointer"
+                >
+                  Learn Redux Toolkit
+                </Button>
+              </Link>
+
+              <ButtonGroupSeparator />
+
+              <Link href="/redux/users" className="cursor-pointer">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="bg-primary-foreground text-primary-foreground-foreground cursor-pointer"
+                >
+                  Redux Thunk
+                </Button>
+              </Link>
+            </ButtonGroup>
           </div>
 
           <div className="text-sm text-muted-foreground font-mono typing-animation">
@@ -302,7 +330,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="text-center p-6 rounded-xl bg-card/30 backdrop-blur card-hover">
-              <div className="text-3xl font-bold text-accent mb-2">10M+</div>
+              <div className="text-3xl font-bold text-primary mb-2">10M+</div>
               <div className="text-sm text-muted-foreground">
                 Combined downloads
               </div>
@@ -400,19 +428,42 @@ export default function HomePage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/zustand">
-              <Button size="lg" className="glow-accent">
+              <Button size="lg" className="glow-primary">
                 Start with Zustand
               </Button>
             </Link>
-            <Link href="/redux">
+
+            <ButtonGroup aria-label="Button group">
+              <Link href="/redux">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="hover:bg-slate-400 bg-slate-200 transition-all duration-300 text-slate-400-foreground cursor-pointer"
+                >
+                  Learn Redux Toolkit
+                </Button>
+              </Link>
+
+              <Link href="/redux">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="bg-primary-foreground text-primary-foreground-foreground cursor-pointer"
+                >
+                  Redux Thunk
+                </Button>
+              </Link>
+            </ButtonGroup>
+
+            {/* <Link href="/redux">
               <Button
                 size="lg"
                 variant="outline"
-                className="hover:bg-accent/10 bg-transparent"
+                className="hover:bg-primary/10 bg-transparent"
               >
                 Learn Redux Toolkit
               </Button>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </main>
@@ -422,8 +473,8 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <div className="w-6 h-6 bg-accent rounded-md flex items-center justify-center">
-                <Code2 className="w-4 h-4 text-accent-foreground" />
+              <div className="w-6 h-6 bg-primary rounded-md flex items-center justify-center">
+                <Code2 className="w-4 h-4 text-primary-foreground" />
               </div>
               <span className="font-semibold gradient-text">StateManager</span>
             </div>

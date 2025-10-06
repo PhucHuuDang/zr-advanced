@@ -20,15 +20,24 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-import hardSet from "redux-persist/es/stateReconciler/hardSet";
 import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
+
+import logger from "redux-logger";
+import { offline } from "@redux-offline/redux-offline";
+import offlineConfig from "@redux-offline/redux-offline/lib/defaults";
 
 const todosPersistConfig = {
   key: "r-todos",
   version: 1,
   storage,
-  whitelist: [SLICE_NAMES.TODOS], // point that only the key reducer will be persisted
+  whitelist: [SLICE_NAMES.TODOS], // point specifically reducer that only the key reducer will be persisted
   stateReconciler: autoMergeLevel2,
+};
+
+// offline configuration
+const offlineConfiguration = {
+  ...offlineConfig,
+  retry: (action: any, retries: number) => (retries < 3 ? 2000 : null),
 };
 
 const rootReducer: Reducer = combineReducers({
@@ -56,8 +65,10 @@ export const store = () =>
             REGISTER,
           ] as any,
         },
-      });
+      }).concat(logger);
     },
+
+    duplicateMiddlewareCheck: true,
   });
 
 export const persistor = persistStore(store());

@@ -34,4 +34,41 @@ export const {
   toggleTodo,
 } = todosSlice.actions;
 
+const addTodoOffline = (state: TodoTypes) => {
+  const tempId = crypto.randomUUID();
+
+  return {
+    type: addTodo.type,
+    payload: { ...state, id: tempId },
+    meta: {
+      offline: {
+        effect: {
+          url: "/api/todos",
+          method: "POST",
+          body: JSON.stringify({ ...state, id: tempId }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+
+        commit: {
+          type: "todosSuccess",
+          me: {
+            ...state,
+            id: tempId,
+          },
+        },
+
+        rollback: {
+          type: "todosFailed",
+          meta: {
+            id: tempId,
+            error: "Failed to add",
+          },
+        },
+      },
+    },
+  };
+};
+
 export default todosSlice.reducer;
