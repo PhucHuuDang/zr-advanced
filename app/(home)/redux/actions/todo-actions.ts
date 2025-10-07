@@ -23,14 +23,6 @@ export const updateTodo = (
   state: StateProps,
   action: PayloadAction<Partial<TodoTypes> & { id: string }>
 ) => {
-  // return state.map((todo) =>
-  //   todo.id === action.payload.id
-  //     ? {
-  //         ...todo,
-  //         ...action.payload,
-  //       }
-  //     : todo
-  // );
   const index = state.findIndex((todo) => todo.id === action.payload.id);
   if (index !== -1) {
     state[index] = { ...state[index], ...action.payload };

@@ -25,6 +25,7 @@ import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
 import logger from "redux-logger";
 import { offline } from "@redux-offline/redux-offline";
 import offlineConfig from "@redux-offline/redux-offline/lib/defaults";
+import { postApi } from "../redux-query/features/post";
 
 const todosPersistConfig = {
   key: "r-todos",
@@ -43,6 +44,7 @@ const offlineConfiguration = {
 const rootReducer: Reducer = combineReducers({
   [SLICE_NAMES.TODOS]: todosReducer,
   [SLICE_NAMES.THUNK]: thunkReducer,
+  [postApi.reducerPath]: postApi.reducer,
 });
 
 const persistedReducer = persistReducer(todosPersistConfig, rootReducer);
@@ -65,7 +67,7 @@ export const store = () =>
             REGISTER,
           ] as any,
         },
-      }).concat(logger);
+      }).concat(logger, postApi.middleware);
     },
 
     duplicateMiddlewareCheck: true,

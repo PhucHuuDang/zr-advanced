@@ -167,11 +167,6 @@ const thunkSlice = createSlice({
   reducers: {},
 
   extraReducers: (builder) => {
-    // builder.addCase(fetchUsers.pending, (state) => {
-    //   state.status = "pending";
-    //   state.error = null;
-    // });
-
     builder.addCase(
       fetchUsers.fulfilled,
       (state, action: PayloadAction<User[]>) => {
@@ -184,30 +179,6 @@ const thunkSlice = createSlice({
       state.users = [];
       state.error = action.error.message || "Unknown error";
     });
-
-    // builder.addCase(updateUser.pending, (state) => {
-    //   state.status = "pending";
-    //   state.error = null;
-    // });
-
-    // builder.addCase(addUser.pending, (state) => {
-    //   state.status = "pending";
-    //   state.error = null;
-    // });
-
-    // builder.addCase(updateUser.rejected, (state, action) => {
-    //   state.status = "failed";
-    //   state.error = action.error.message || "Unknown error";
-
-    //   toast.error("User updated failed");
-    // });
-
-    // builder.addCase(addUser.rejected, (state, action) => {
-    //   state.status = "failed";
-    //   state.error = action.error.message || "Unknown error";
-
-    //   toast.error("User added failed");
-    // });
 
     builder.addCase(updateUser.fulfilled, (state, action) => {
       state.status = "succeeded";
@@ -233,7 +204,6 @@ const thunkSlice = createSlice({
     });
 
     // matcher
-
     builder.addMatcher(
       (action) => action.type.endsWith("pending"),
       (state) => {

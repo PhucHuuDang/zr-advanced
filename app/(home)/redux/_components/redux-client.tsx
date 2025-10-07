@@ -14,6 +14,10 @@ import {
 import { fetchUsers } from "../features/thunk-slice";
 import { SLICE_NAMES } from "../key/slice-names";
 import { RootState } from "../r-stores/store";
+import {
+  useGetPostQuery,
+  useLazyGetPostQuery,
+} from "../redux-query/features/post";
 
 const url = "https://jsonplaceholder.typicode.com/users";
 
@@ -53,6 +57,15 @@ const ReduxClient = () => {
     clearTodosStore: () => dispatch(clearTodos()),
     clearCompletedStore: () => dispatch(clearCompleted()),
   };
+
+  const { data, isLoading, error } = useGetPostQuery();
+
+  const [
+    trigger,
+    { data: lazyData, isLoading: lazyLoading, error: lazyError },
+  ] = useLazyGetPostQuery();
+
+  console.log({ data, isLoading, error });
 
   return <TodoContainer {...actions} />;
 };
