@@ -28,14 +28,11 @@ export function DeleteDialog({
 }: DeleteDialogProps) {
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const dispatch = useAppDispatch();
-
   const handleDelete = async () => {
     if (!user) return;
 
     setIsDeleting(true);
     try {
-      await dispatch(deleteUser(user.id));
       onUserDeleted(user.id);
       onOpenChange(false);
     } catch (error) {

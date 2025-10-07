@@ -85,12 +85,17 @@ export const updateUser = createAsyncThunk(
     },
     { rejectWithValue }
   ) => {
+    console.log({ values });
+
     if (!values.id || !values.user) return rejectWithValue("Invalid values");
 
     try {
       const res = await fetch(`${url}/${values.id}`, {
         method: "PUT",
-        body: JSON.stringify(values.user),
+        body: JSON.stringify({
+          ...values.user,
+          id: values.id,
+        }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -162,10 +167,10 @@ const thunkSlice = createSlice({
   reducers: {},
 
   extraReducers: (builder) => {
-    builder.addCase(fetchUsers.pending, (state) => {
-      state.status = "pending";
-      state.error = null;
-    });
+    // builder.addCase(fetchUsers.pending, (state) => {
+    //   state.status = "pending";
+    //   state.error = null;
+    // });
 
     builder.addCase(
       fetchUsers.fulfilled,
@@ -180,29 +185,29 @@ const thunkSlice = createSlice({
       state.error = action.error.message || "Unknown error";
     });
 
-    builder.addCase(updateUser.pending, (state) => {
-      state.status = "pending";
-      state.error = null;
-    });
+    // builder.addCase(updateUser.pending, (state) => {
+    //   state.status = "pending";
+    //   state.error = null;
+    // });
 
-    builder.addCase(addUser.pending, (state) => {
-      state.status = "pending";
-      state.error = null;
-    });
+    // builder.addCase(addUser.pending, (state) => {
+    //   state.status = "pending";
+    //   state.error = null;
+    // });
 
-    builder.addCase(updateUser.rejected, (state, action) => {
-      state.status = "failed";
-      state.error = action.error.message || "Unknown error";
+    // builder.addCase(updateUser.rejected, (state, action) => {
+    //   state.status = "failed";
+    //   state.error = action.error.message || "Unknown error";
 
-      toast.error("User updated failed");
-    });
+    //   toast.error("User updated failed");
+    // });
 
-    builder.addCase(addUser.rejected, (state, action) => {
-      state.status = "failed";
-      state.error = action.error.message || "Unknown error";
+    // builder.addCase(addUser.rejected, (state, action) => {
+    //   state.status = "failed";
+    //   state.error = action.error.message || "Unknown error";
 
-      toast.error("User added failed");
-    });
+    //   toast.error("User added failed");
+    // });
 
     builder.addCase(updateUser.fulfilled, (state, action) => {
       state.status = "succeeded";
@@ -227,12 +232,25 @@ const thunkSlice = createSlice({
       state.users = state.users.filter((u) => u.id !== Number(action.meta.arg));
     });
 
+    // matcher
+
+    builder.addMatcher(
+      (action) => action.type.endsWith("pending"),
+      (state) => {
+        state.status = "pending";
+        state.error = null;
+      }
+    );
+
     builder.addMatcher(
       (action) => action.type.endsWith("rejected"),
       (state, action: any) => {
+        state.status = "failed";
         state.error = action.error.message || "Unknown error";
 
-        toast.error("User updated failed");
+        const message = action.error.message || "Unknown error";
+
+        toast.error(message);
       }
     );
   },

@@ -14,8 +14,6 @@ import {
 import { fetchUsers } from "../features/thunk-slice";
 import { SLICE_NAMES } from "../key/slice-names";
 import { RootState } from "../r-stores/store";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 const url = "https://jsonplaceholder.typicode.com/users";
 

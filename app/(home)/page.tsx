@@ -153,7 +153,7 @@ export default function HomePage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="hover:bg-slate-400 bg-slate-200 transition-all duration-300 text-slate-400-foreground cursor-pointer"
+                  className="hover:bg-slate-400 bg-slate-200 transition-all duration-300 text-primary-foreground cursor-pointer"
                 >
                   Learn Redux Toolkit
                 </Button>
@@ -438,13 +438,13 @@ export default function HomePage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="hover:bg-slate-400 bg-slate-200 transition-all duration-300 text-slate-400-foreground cursor-pointer"
+                  className="hover:bg-slate-400 bg-slate-200 transition-all duration-300 text-primary-foreground cursor-pointer"
                 >
                   Learn Redux Toolkit
                 </Button>
               </Link>
 
-              <Link href="/redux">
+              <Link href="/redux/users">
                 <Button
                   size="lg"
                   variant="outline"

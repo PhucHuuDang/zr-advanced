@@ -89,140 +89,13 @@ export function UserTable() {
   console.log({ users });
 
   return (
-    // <div className="space-y-6">
-    //   <div className="flex items-center justify-between">
-    //     <div>
-    //       <h1 className="text-3xl font-semibold tracking-tight text-balance">
-    //         User Management
-    //       </h1>
-    //       <p className="text-muted-foreground mt-1">
-    //         Manage your user database
-    //       </p>
-    //     </div>
-    //     <Button onClick={handleCreate} className="gap-2">
-    //       <Plus className="h-4 w-4" />
-    //       Add User
-    //     </Button>
-    //   </div>
-
-    //   <div className="grid gap-4">
-    //     {users.map((user: User) => (
-    //       <div
-    //         key={user.id}
-    //         className="bg-card border border-border rounded-lg p-6 hover:border-accent/50 transition-colors"
-    //       >
-    //         <div className="flex items-start justify-between gap-4">
-    //           <div className="flex-1 space-y-4">
-    //             <div className="flex items-start justify-between">
-    //               <div>
-    //                 <h3 className="text-lg font-semibold text-card-foreground">
-    //                   {user.name}
-    //                 </h3>
-    //                 <p className="text-sm text-muted-foreground">
-    //                   @{user.username}
-    //                 </p>
-    //               </div>
-    //               <div className="flex gap-2">
-    //                 <Button
-    //                   variant="ghost"
-    //                   size="icon"
-    //                   onClick={() => handleEdit(user)}
-    //                   className="h-8 w-8"
-    //                 >
-    //                   <Pencil className="h-4 w-4" />
-    //                   <span className="sr-only">Edit user</span>
-    //                 </Button>
-    //                 <Button
-    //                   variant="ghost"
-    //                   size="icon"
-    //                   onClick={() => handleDelete(user)}
-    //                   className="h-8 w-8 text-destructive hover:text-destructive"
-    //                 >
-    //                   <Trash2 className="h-4 w-4" />
-    //                   <span className="sr-only">Delete user</span>
-    //                 </Button>
-    //               </div>
-    //             </div>
-
-    //             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-    //               <div className="flex items-center gap-2 text-sm">
-    //                 <Globe className="h-4 w-4 text-muted-foreground" />
-    //                 <div>
-    //                   <p className="text-muted-foreground text-xs">Email</p>
-    //                   <p className="text-card-foreground">{user.email}</p>
-    //                 </div>
-    //               </div>
-
-    //               <div className="flex items-center gap-2 text-sm">
-    //                 <Phone className="h-4 w-4 text-muted-foreground" />
-    //                 <div>
-    //                   <p className="text-muted-foreground text-xs">Phone</p>
-    //                   <p className="text-card-foreground">{user.phone}</p>
-    //                 </div>
-    //               </div>
-
-    //               <div className="flex items-center gap-2 text-sm">
-    //                 <MapPin className="h-4 w-4 text-muted-foreground" />
-    //                 <div>
-    //                   <p className="text-muted-foreground text-xs">Location</p>
-    //                   <p className="text-card-foreground">
-    //                     {user.address?.city ?? "N/A"}
-    //                   </p>
-    //                 </div>
-    //               </div>
-
-    //               <div className="flex items-center gap-2 text-sm">
-    //                 <Building2 className="h-4 w-4 text-muted-foreground" />
-    //                 <div>
-    //                   <p className="text-muted-foreground text-xs">Company</p>
-    //                   <p className="text-card-foreground">
-    //                     {user.company?.name ?? "N/A"}
-    //                   </p>
-    //                 </div>
-    //               </div>
-    //             </div>
-
-    //             <div className="flex items-center gap-2 text-sm pt-2 border-t border-border">
-    //               <Globe className="h-3.5 w-3.5 text-muted-foreground" />
-    //               <a
-    //                 href={`https://${user.website}`}
-    //                 target="_blank"
-    //                 rel="noopener noreferrer"
-    //                 className="text-accent hover:underline"
-    //               >
-    //                 {user.website}
-    //               </a>
-    //             </div>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     ))}
-    //   </div>
-
-    //   <UserDialog
-    //     user={selectedUser}
-    //     open={isDialogOpen}
-    //     onOpenChange={setIsDialogOpen}
-    //     onUserSaved={handleUserSaved}
-    //   />
-
-    //   <DeleteDialog
-    //     user={userToDelete}
-    //     open={isDeleteDialogOpen}
-    //     onOpenChange={setIsDeleteDialogOpen}
-    //     onUserDeleted={handleUserDeleted}
-    //   />
-    // </div>
-
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-semibold tracking-tight text-balance">
             User Management
           </h1>
-          <p className="text-muted-foreground mt-1">
-            Manage your user database
-          </p>
+          <p className="text-primary  mt-1">Manage your user database</p>
         </div>
         <Button onClick={handleCreate} className="gap-2">
           <Plus className="h-4 w-4" />
@@ -258,7 +131,7 @@ export function UserTable() {
                     </div>
                     <a
                       href={`mailto:${user.email}`}
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors mt-1 inline-block"
+                      className="text-sm text-primary  hover:text-primary transition-colors mt-1 inline-block"
                     >
                       {user.email}
                     </a>
@@ -277,7 +150,7 @@ export function UserTable() {
                       variant="ghost"
                       size="icon"
                       onClick={() => handleDelete(user)}
-                      className="h-9 w-9 hover:bg-destructive/10 text-muted-foreground hover:text-destructive"
+                      className="h-9 w-9 hover:bg-destructive/10 text-primary  hover:text-destructive"
                     >
                       <Trash2 className="h-4 w-4" />
                       <span className="sr-only">Delete user</span>
@@ -291,7 +164,7 @@ export function UserTable() {
                       <Phone className="h-4 w-4 text-primary" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-xs font-medium text-muted-foreground mb-0.5">
+                      <p className="text-xs font-medium text-primary  mb-0.5">
                         Phone
                       </p>
                       <p className="text-sm text-card-foreground truncate">
@@ -305,7 +178,7 @@ export function UserTable() {
                       <MapPin className="h-4 w-4 text-primary" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-xs font-medium text-muted-foreground mb-0.5">
+                      <p className="text-xs font-medium text-primary  mb-0.5">
                         Location
                       </p>
                       <p className="text-sm text-card-foreground truncate">
@@ -319,7 +192,7 @@ export function UserTable() {
                       <Building2 className="h-4 w-4 text-primary" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-xs font-medium text-muted-foreground mb-0.5">
+                      <p className="text-xs font-medium text-primary  mb-0.5">
                         Company
                       </p>
                       <p className="text-sm text-card-foreground truncate">
@@ -333,7 +206,7 @@ export function UserTable() {
                       <Globe className="h-4 w-4 text-primary" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-xs font-medium text-muted-foreground mb-0.5">
+                      <p className="text-xs font-medium text-primary  mb-0.5">
                         Website
                       </p>
                       <Link
