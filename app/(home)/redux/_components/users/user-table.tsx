@@ -17,8 +17,7 @@ import {
   deleteUser,
   fetchUsers,
   updateUser,
-  User,
-} from "../../features/thunk-slice";
+} from "../../features/thunk-actions";
 import { UserDialog } from "./user-dialog";
 import { useAppDispatch, useAppSelector } from "../../hooks/hook";
 import { RootState } from "../../r-stores/store";
@@ -27,6 +26,7 @@ import { nanoid } from "@reduxjs/toolkit";
 import { toast } from "sonner";
 import Link from "next/link";
 import { Waiting } from "@/components/simulate/wating";
+import { User } from "../../types/user.types";
 
 const url = "https://jsonplaceholder.typicode.com/users";
 
@@ -85,8 +85,6 @@ export function UserTable() {
   }, [dispatch]);
 
   console.log({ status });
-  console.log({ error });
-  console.log({ users });
 
   return (
     <div className="space-y-6">

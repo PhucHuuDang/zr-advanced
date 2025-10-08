@@ -12,8 +12,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { addUser, updateUser, User } from "../../features/thunk-slice";
+import { addUser, updateUser } from "../../features/thunk-actions";
 import { useAppDispatch } from "../../hooks/hook";
+import { User } from "../../types/user.types";
 
 interface UserDialogProps {
   user: User | null;

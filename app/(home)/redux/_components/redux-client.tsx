@@ -11,7 +11,7 @@ import {
   removeTodos,
   updateTodo,
 } from "../features/todo-slice";
-import { fetchUsers } from "../features/thunk-slice";
+import { fetchUsers } from "../features/thunk-actions";
 import { SLICE_NAMES } from "../key/slice-names";
 import { RootState } from "../r-stores/store";
 import {
